@@ -1,0 +1,34 @@
+import java.io.Console;
+import java.util.Scanner;
+
+public class LoginSystem {
+
+    public static void main(String[] args) {
+        String correctUsername = "admin";
+        String correctPassword = "pass123";
+        int maxAttempts = 3;
+        Scanner scanner = new Scanner(System.in);
+
+        for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+            System.out.print("Enter username: ");
+            String inputUsername = scanner.nextLine();
+
+            String inputPassword = "";
+
+            Console console = System.console();
+
+            // If running in an IDE, fallback to Scanner
+            if (console == null) {
+                System.out.print("Enter password: ");
+                inputPassword = scanner.nextLine();
+            } else {
+                char[] passwordChars = console.readPassword("Enter password: ");
+                for (char c : passwordChars) {
+                    System.out.print("*");
+                }
+                System.out.println();
+                inputPassword = new String(passwordChars);
+            }
+
+            // Check credentials
+            if (inputUsername.equals(correctUsername) && inputPassword.equals(correctP
